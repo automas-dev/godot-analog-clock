@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://qc4cv6fs7vm4"]
+
+[ext_resource type="PackedScene" uid="uid://df25vaaqka282" path="res://addons/godot-analog-clock/examples/Clock.glb" id="1_hltds"]
+[ext_resource type="Script" uid="uid://m5hutl8gdsdu" path="res://addons/godot-analog-clock/clock.gd" id="2_hltds"]
+
+[node name="Clock2" instance=ExtResource("1_hltds")]
+script = ExtResource("2_hltds")
