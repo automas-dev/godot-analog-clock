@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  lint:
+    name: "Static checks"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup gdtoolkit
+        uses: Scony/godot-gdscript-toolkit@master
+
+      - name: Lint Addon
+        run: |
+          gdformat --check addons/
+          gdlint addons/
+
+  build_release:
+    name: Build Release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'NO RELEASE')
+
+    needs: lint
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Increment Version
+        uses: automas-dev/reusable-workflows/increment_version@main
+        id: version
+
+      - name: Create Archive
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          zip godot-analog-clock-${VERSION}.zip addons/
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifacts: godot-analog-clock-${{ steps.version.outputs.version }}.zip
+          makeLatest: true
+          generateReleaseNotes: true
+          tag: ${{ steps.version.outputs.version }}
