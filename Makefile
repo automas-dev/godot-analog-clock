@@ -7,4 +7,7 @@ lint:
 	. .venv/bin/activate && gdformat --check addons/
 	. .venv/bin/activate && gdlint addons/
 
-.PHONY: setup lint
+format:
+	. .venv/bin/activate && gdformat addons/
+
+.PHONY: setup lint format

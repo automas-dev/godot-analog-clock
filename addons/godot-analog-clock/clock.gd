@@ -16,7 +16,8 @@ func _process(_delta: float) -> void:
 	var time = Time.get_time_dict_from_system()
 	if time.second != last_second:
 		if hour_hand:
-			get_node(hour_hand).rotation_degrees.z = -(360 / 12) * (time.hour % 12)
+			var hour_fraction = float(time.minute) / 60.0
+			get_node(hour_hand).rotation_degrees.z = -(360 / 12) * (time.hour % 12 + hour_fraction)
 		if minute_hand:
 			get_node(minute_hand).rotation_degrees.z = -(360 / 60) * time.minute
 		if second_hand:
