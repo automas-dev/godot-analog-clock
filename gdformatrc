@@ -1,0 +1,6 @@
+excluded_directories: !!set
+  .git: null
+  .github: null
+  .godot: null
+  .venv: null
+  .vscode: null

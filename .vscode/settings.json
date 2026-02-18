@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "gdlintrc": "yaml",
+        "gdformatrc": "yaml"
+    }
+}
