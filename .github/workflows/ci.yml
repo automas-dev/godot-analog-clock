@@ -47,7 +47,7 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          zip godot-analog-clock-${VERSION}.zip addons/
+          zip -r godot-analog-clock-${VERSION}.zip addons
 
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
