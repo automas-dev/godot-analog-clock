@@ -16,10 +16,10 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup gdtoolkit
-        uses: Scony/godot-gdscript-toolkit@master
+        uses: Scony/godot-gdscript-toolkit@4.5.0
 
       - name: Lint Addon
         run: |
@@ -37,10 +37,10 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Increment Version
-        uses: automas-dev/reusable-workflows/increment_version@main
+        uses: automas-dev/reusable-workflows/increment_version@v1.1
         id: version
 
       - name: Create Archive
